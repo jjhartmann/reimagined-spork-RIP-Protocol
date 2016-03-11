@@ -50,8 +50,17 @@ public:
         return routingTable[i];
     }
     
-    
-    
+    void printTable()
+    {
+        cout << "ROUTING TABLE:\t\t" << mRouterID << endl;
+        cout << "Indx \tDestination \tNext Router \tDistance" << endl;
+        cout << "---------------------------------------------------------" << endl;
+        int index = 0;
+        for (RoutingTableEntry v : routingTable)
+        {
+            cout << index << "  \t" << v.destinationNetwork << "      \t" << v.nextHopRouter << "       \t" << v.numberOfHops << endl;
+        }
+    }
     
 private:
     vector<RoutingTableEntry> routingTable;
