@@ -73,6 +73,49 @@ private:
 };
 
 
+// Initialize the Routers.
+vector<Router> init()
+{
+    vector<Router> routers;
+    Router R1("R1");
+    R1.insertIntoTable("N1", "-", 1);
+    R1.insertIntoTable("N2", "-", 1);
+    routers.push_back(R1);
+    
+    Router R2("R2");
+    R1.insertIntoTable("N2", "-", 1);
+    R1.insertIntoTable("N3", "-", 1);
+    routers.push_back(R1);
+    
+    Router R3("R3");
+    R1.insertIntoTable("N3", "-", 1);
+    R1.insertIntoTable("N4", "-", 1);
+    routers.push_back(R1);
+    
+    Router R4("R4");
+    R1.insertIntoTable("N4", "-", 1);
+    R1.insertIntoTable("N5", "-", 1);
+    routers.push_back(R1);
+    
+    Router R5("R5");
+    R1.insertIntoTable("N5", "-", 1);
+    R1.insertIntoTable("N6", "-", 1);
+    routers.push_back(R1);
+    
+    Router R6("R6");
+    R1.insertIntoTable("N6", "-", 1);
+    R1.insertIntoTable("N7", "-", 1);
+    routers.push_back(R1);
+    
+    Router R7("R7");
+    R1.insertIntoTable("N7", "-", 1);
+    R1.insertIntoTable("N8", "-", 1);
+    routers.push_back(R1);
+    
+    return routers;
+    
+}
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -80,9 +123,9 @@ private:
 int main(int argc, const char * argv[]) {
     
     // RIP Protocol Simulation
+    vector<Router> routers = init();
     
-    
-    
+    routers[0].printTable();
     
     return 0;
 }
