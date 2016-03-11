@@ -150,14 +150,12 @@ public:
     // Print Routing table
     void printTable()
     {
-        cout << "ROUTING TABLE:\t\t\t" << mRouterID << endl;
+        cout << "ROUTING TABLE: " << mRouterID << endl;
         cout << "Indx \tDestination \tNext Router \tDistance" << endl;
         cout << "------------------------------------------------" << endl;
-        int index = 0;
-        for (RoutingTableEntry v : routingTable)
+        for (int i = 0; i < routingTable.size(); ++i)
         {
-            cout << index << "     \t" << v.destinationNetwork << "            \t" << v.nextHopRouter << "           \t" << v.numberOfHops << endl;
-            index++;
+            cout << i << "     \t" << routingTable[i].destinationNetwork << "            \t" << routingTable[i].nextHopRouter << "           \t" << routingTable[i].numberOfHops << endl;
         }
         cout << endl;
     }
