@@ -223,26 +223,34 @@ Router* init()
 // 2. Move to router two, repeat.
 void PerformRIP(Router *R1)
 {
+    // Print Routing Tables.
+    cout << "****** START RIP PROCESS: ORIGINAL ******" << endl;
+    Router *itr = R1;
+    while (itr != NULL)
+    {
+        itr->printTable();
+        itr = itr->getNext();
+    }
+    
     // Perform Rounds.
     Router *n = R1;
+    int round = 1;
     while (n != NULL)
     {
-        // Print Routing Tables.
-        Router *itr = R1;
+        cout << "***********************************************************\n********************** RIP ROUND " << round << " ************************" << endl;
+        // Send message;
+        n->broadcast();
+        
+        // Print Table
+        itr = R1;
         while (itr != NULL)
         {
             itr->printTable();
             itr = itr->getNext();
         }
         
-        
-        // Send message;
-        
-        
-        
-        
-        
         n = n->getNext();
+        ++round;
     }
         
     
@@ -258,6 +266,10 @@ int main(int argc, const char * argv[]) {
     
     // RIP Protocol Simulation
     Router *R1 = init();
+    
+    // Start the RIP Simulation
+    PerformRIP(R1);
+    
     
     return 0;
 }
