@@ -97,11 +97,12 @@ public:
         if (mPrev)
         {
             // Send to left.
+            mPrev->update(routingTable, mRouterID);
         }
         
         if (mNext)
         {
-            // Send to right.
+            mNext->update(routingTable, mRouterID);
         }
     }
     
@@ -178,34 +179,34 @@ Router* init()
     
     
     Router *R2 = new Router(1);
-    R1->insertIntoTable("N2", -1, 1);
-    R1->insertIntoTable("N3", -1, 1);
+    R2->insertIntoTable("N2", -1, 1);
+    R2->insertIntoTable("N3", -1, 1);
     
     Router *R3 = new Router(2);
-    R1->insertIntoTable("N3", -1, 1);
-    R1->insertIntoTable("N4", -1, 1);
+    R3->insertIntoTable("N3", -1, 1);
+    R3->insertIntoTable("N4", -1, 1);
     
     Router *R4 = new Router(3);
-    R1->insertIntoTable("N4", -1, 1);
-    R1->insertIntoTable("N5", -1, 1);
+    R4->insertIntoTable("N4", -1, 1);
+    R4->insertIntoTable("N5", -1, 1);
     
     Router *R5 = new Router(4);
-    R1->insertIntoTable("N5", -1, 1);
-    R1->insertIntoTable("N6", -1, 1);
+    R5->insertIntoTable("N5", -1, 1);
+    R5->insertIntoTable("N6", -1, 1);
     
     Router *R6 = new Router(5);
-    R1->insertIntoTable("N6", -1, 1);
-    R1->insertIntoTable("N7", -1, 1);
+    R6->insertIntoTable("N6", -1, 1);
+    R6->insertIntoTable("N7", -1, 1);
     
     Router *R7 = new Router(6);
-    R1->insertIntoTable("N7", -1, 1);
-    R1->insertIntoTable("N8", -1, 1);
+    R7->insertIntoTable("N7", -1, 1);
+    R7->insertIntoTable("N8", -1, 1);
     
     R1->setNext(R2);
     R2->setPrev(R1);
     R2->setNext(R3);
     R3->setPrev(R2);
-    R3->setNext(R3);
+    R3->setNext(R4);
     R4->setPrev(R3);
     R4->setNext(R5);
     R5->setPrev(R4);
