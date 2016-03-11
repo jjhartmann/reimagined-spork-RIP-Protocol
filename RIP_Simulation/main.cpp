@@ -253,12 +253,16 @@ void PerformRIP(Router *R1)
         n = n->getNext();
         ++round;
     }
-        
-    
-    
-    
 }
 
+// Deallocate router memory
+void DeallocateRouters(Router *head)
+{
+    if (!head) return;
+    DeallocateRouters(head->getNext());
+    delete head;
+    head = NULL;
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -271,6 +275,8 @@ int main(int argc, const char * argv[]) {
     // Start the RIP Simulation
     PerformRIP(R1);
     
+    // Deallocate memory
+    DeallocateRouters(R1);
     
     return 0;
 }
