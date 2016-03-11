@@ -66,6 +66,7 @@ public:
             cout << index << "     \t" << v.destinationNetwork << "            \t" << v.nextHopRouter << "           \t" << v.numberOfHops << endl;
             index++;
         }
+        cout << endl;
     }
     
 private:
