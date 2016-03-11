@@ -41,7 +41,7 @@ public:
     }
     
     // Insert into table
-    void InsertIntoTable(string dest, string nextRouter, int num)
+    void insertIntoTable(string dest, string nextRouter, int num)
     {
         RoutingTableEntry entry(dest, nextRouter, num);
         routingTable.push_back(entry);
@@ -57,13 +57,14 @@ public:
     
     void printTable()
     {
-        cout << "ROUTING TABLE:\t\t" << mRouterID << endl;
+        cout << "ROUTING TABLE:\t\t\t" << mRouterID << endl;
         cout << "Indx \tDestination \tNext Router \tDistance" << endl;
-        cout << "---------------------------------------------------------" << endl;
+        cout << "------------------------------------------------" << endl;
         int index = 0;
         for (RoutingTableEntry v : routingTable)
         {
-            cout << index << "  \t" << v.destinationNetwork << "      \t" << v.nextHopRouter << "       \t" << v.numberOfHops << endl;
+            cout << index << "     \t" << v.destinationNetwork << "            \t" << v.nextHopRouter << "           \t" << v.numberOfHops << endl;
+            index++;
         }
     }
     
