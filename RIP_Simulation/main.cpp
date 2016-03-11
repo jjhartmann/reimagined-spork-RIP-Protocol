@@ -30,7 +30,8 @@ struct RoutingTableEntry
 class Router
 {
 public:
-    Router()
+    Router(string id) :
+     mRouterID(id)
     {
         ;
     }
@@ -63,6 +64,7 @@ public:
     }
     
 private:
+    const string mRouterID;
     vector<RoutingTableEntry> routingTable;
 };
 
