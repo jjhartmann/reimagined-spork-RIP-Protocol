@@ -91,6 +91,61 @@ public:
         return mPrev;
     }
     
+    // Broadcast Table to neightbor routers
+    void broadcast()
+    {
+        if (mPrev)
+        {
+            // Send to left.
+        }
+        
+        if (mNext)
+        {
+            // Send to right.
+        }
+    }
+    
+    // Update Table from neighbour router.
+    void update(vector<RoutingTableEntry> rTable, int id)
+    {
+        for (int i = 0; i < rTable.size(); ++i)
+        {
+            bool add = true;
+            for (int j = 0; j < routingTable.size(); ++j)
+            {
+                // Compare tables and input if not present.
+                if (rTable[i].destinationNetwork == routingTable[j].destinationNetwork)
+                {
+                    add = false;
+                }
+            }
+            
+            // If add is true, add new entry to table
+            if (add)
+            {
+                RoutingTableEntry entry(rTable[i].destinationNetwork, id, rTable[i].numberOfHops + 1);
+                routingTable.push_back(entry);
+            }
+        }
+        
+        // Send along update
+        if (id < mRouterID)
+        {
+            if (mNext)
+            {
+                mNext->update(routingTable, mRouterID);
+            }
+        }
+        else
+        {
+            if (mPrev)
+            {
+                mPrev->update(routingTable, mRouterID);
+            }
+        }
+    }
+    
+    
     // Print Routing table
     void printTable()
     {
