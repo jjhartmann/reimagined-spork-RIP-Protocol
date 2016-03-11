@@ -18,14 +18,14 @@ struct RoutingTableEntry
     RoutingTableEntry()
     {}
     
-    RoutingTableEntry(string d, string n, int x) :
+    RoutingTableEntry(string d, int n, int x) :
         destinationNetwork(d),
         nextHopRouter(n),
         numberOfHops(x)
     {}
     
     string destinationNetwork;
-    string nextHopRouter;
+    int nextHopRouter;
     int numberOfHops;
 };
 
@@ -43,7 +43,7 @@ public:
     }
     
     // Insert into table
-    void insertIntoTable(string dest, string nextRouter, int num)
+    void insertIntoTable(string dest, int nextRouter, int num)
     {
         RoutingTableEntry entry(dest, nextRouter, num);
         routingTable.push_back(entry);
@@ -173,33 +173,33 @@ private:
 Router* init()
 {
     Router *R1 = new Router(0);
-    R1->insertIntoTable("N1", "-", 1);
-    R1->insertIntoTable("N2", "-", 1);
+    R1->insertIntoTable("N1", -1, 1);
+    R1->insertIntoTable("N2", -1, 1);
     
     
     Router *R2 = new Router(1);
-    R1->insertIntoTable("N2", "-", 1);
-    R1->insertIntoTable("N3", "-", 1);
+    R1->insertIntoTable("N2", -1, 1);
+    R1->insertIntoTable("N3", -1, 1);
     
     Router *R3 = new Router(2);
-    R1->insertIntoTable("N3", "-", 1);
-    R1->insertIntoTable("N4", "-", 1);
+    R1->insertIntoTable("N3", -1, 1);
+    R1->insertIntoTable("N4", -1, 1);
     
     Router *R4 = new Router(3);
-    R1->insertIntoTable("N4", "-", 1);
-    R1->insertIntoTable("N5", "-", 1);
+    R1->insertIntoTable("N4", -1, 1);
+    R1->insertIntoTable("N5", -1, 1);
     
     Router *R5 = new Router(4);
-    R1->insertIntoTable("N5", "-", 1);
-    R1->insertIntoTable("N6", "-", 1);
+    R1->insertIntoTable("N5", -1, 1);
+    R1->insertIntoTable("N6", -1, 1);
     
     Router *R6 = new Router(5);
-    R1->insertIntoTable("N6", "-", 1);
-    R1->insertIntoTable("N7", "-", 1);
+    R1->insertIntoTable("N6", -1, 1);
+    R1->insertIntoTable("N7", -1, 1);
     
     Router *R7 = new Router(6);
-    R1->insertIntoTable("N7", "-", 1);
-    R1->insertIntoTable("N8", "-", 1);
+    R1->insertIntoTable("N7", -1, 1);
+    R1->insertIntoTable("N8", -1, 1);
     
     R1->setNext(R2);
     R2->setPrev(R1);
@@ -221,16 +221,29 @@ Router* init()
 // Perform Rip on all routers.
 // 1. Start with Router one, and propogate table throughout Other routers.
 // 2. Move to router two, repeat.
-void PerformRIP(vector<Router> &routers)
+void PerformRIP(Router *R1)
 {
-    int numberOfRouters = routers.size();
-    
-    
-    // The rounds.
-    for (int round = 0; round < numberOfRouters; ++round)
+    // Perform Rounds.
+    Router *n = R1;
+    while (n != NULL)
     {
-        // Print each routers table
-        cout << "****ROUND NUMBER " << round + 1 << "*****" <<endl;
+        // Print Routing Tables.
+        Router *itr = R1;
+        while (itr != NULL)
+        {
+            itr->printTable();
+            itr = itr->getNext();
+        }
+        
+        
+        // Send message;
+        
+        
+        
+        
+        
+        n = n->getNext();
+    }
         
     
     
